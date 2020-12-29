@@ -31,8 +31,8 @@ class FlowRun:
         data = ''
         for step in self._step_list:
             _ = step.generate()
-            data += f'{_}\n'
-        return f'flow_run  {self._name}\n {data} flow_run_end'
+            data += f'  {_}\n'
+        return f'flow_run {self._name}\n{data}flow_run_end'
 
     def create(self, name):
         self._name = name
@@ -43,9 +43,9 @@ class FlowRun:
         print(flow_data['data'])
 
         with error_suppress(false):
-            req_url = posixpath.join(self.echoer_url, 'flow')
+            req_url = posixpath.join(self.echoer_url, 'flowrun')
+            print('req_url', req_url)
             req = requests.post(req_url, json=flow_data, timeout=30)
-
             if req.status_code == 200:
                 return True
             else:
@@ -55,7 +55,9 @@ class FlowRun:
     def one(self, name):
         with error_suppress(false):
             req_url = posixpath.join(self.echoer_url, 'flowrun', name)
+            print('url', req_url)
             req = requests.get(req_url, timeout=30)
+            print('result', req.__dict__)
             if req.status_code == 200:
                 return req.json()
             else:
@@ -75,7 +77,9 @@ class FlowRun:
     def delete(self, name, uuid):
         with error_suppress(false):
             req_url = posixpath.join(self.echoer_url, 'flowrun', name, uuid)
+            print(req_url)
             req = requests.delete(req_url, timeout=30)
+            print(req.__dict__)
             if req.status_code == 200:
                 return req.json()
             else:

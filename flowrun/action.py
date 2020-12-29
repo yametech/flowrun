@@ -55,7 +55,9 @@ class Action:
 
         with error_suppress(false):
             req_url = posixpath.join(self.echoer_url, 'action')
+            print('url', req_url)
             req = requests.post(req_url, json=action_data, timeout=30)
+            print('request', req.__dict__)
             if req.status_code == 200:
                 return "True"
             else:

@@ -36,7 +36,7 @@ class Step:
         return [self._name]
 
     def generate(self):
-        _ = f'step {self._name} => ({self._flow}) {{action = "{self._action}"; args = ({self._str_args});}};'
+        _ = f'step {self._name} => ({self._flow}) {{action="{self._action}"; args=({self._str_args});}};'
 
         return _
 
