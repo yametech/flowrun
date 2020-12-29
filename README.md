@@ -20,6 +20,7 @@ action.add_data({
     'project': 'str',
     'version': 'str'
 })
+action.set_return('SUCCESS', 'FAIL')
 action.create(
     interface_url='interface_address(http)', name='action_name')
 

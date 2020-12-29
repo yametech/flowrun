@@ -1,6 +1,8 @@
-from .utils import error_suppress, false
 import posixpath
+
 import requests
+
+from .utils import error_suppress, false
 
 
 class Step:

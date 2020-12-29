@@ -1,7 +1,9 @@
-from .utils import error_suppress, false
-from .step import Step
-import requests
 import posixpath
+
+import requests
+
+from .step import Step
+from .utils import error_suppress, false
 
 
 class FlowRun:
@@ -55,7 +57,7 @@ class FlowRun:
             req_url = posixpath.join(self.echoer_url, 'flowrun', name)
             req = requests.get(req_url, timeout=30)
             if req.status_code == 200:
-                return True
+                return req.json()
             else:
                 print('发送echoer错误', req.json())
                 return False

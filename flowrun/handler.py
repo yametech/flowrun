@@ -1,7 +1,9 @@
-from .utils import error_suppress, connect_false, false
-import requests
 import json
+
+import requests
 from sseclient import SSEClient
+
+from .utils import error_suppress, connect_false, false
 
 
 class EchoerHandler:
