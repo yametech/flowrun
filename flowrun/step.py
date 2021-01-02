@@ -52,7 +52,8 @@ class ResponseStep:
             step_name,
             ack_state,
             uuid,
-            done: bool,
+            done=True,
+            global_variables=None,
     ):
         with error_suppress(false):
             data = dict(
@@ -60,8 +61,11 @@ class ResponseStep:
                 stepName=step_name,
                 ackState=ack_state,
                 uuid=uuid,
-                done=done
+                done=done,
             )
+
+            if global_variables:
+                data.update(globalVariables=global_variables)
 
             req_url = posixpath.join(self.echoer_url, 'step')
             req = requests.post(req_url, json=data, timeout=30)
